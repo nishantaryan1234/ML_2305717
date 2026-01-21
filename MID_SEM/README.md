@@ -1,0 +1,221 @@
+#  Ordinary Least Squares (OLS) Linear Regression — From Scratch
+
+This project demonstrates how to implement **Ordinary Least Squares (OLS)** linear regression **without using any external libraries** like NumPy or pandas.  
+It’s a simple and educational example of how linear regression works under the hood.
+
+---
+
+##  Features
+- Calculates **slope (m)** and **intercept (b)** manually  
+- Uses basic Python operations only  
+- Predicts `y` values for given `x` inputs  
+- Clean and minimal code — great for learning regression fundamentals  
+
+---
+
+##  Formula
+
+The best-fit line is given by:
+
+\[
+y = m x + b
+\]
+
+\[
+x_mean = sum(x)/len(x)
+\]
+
+
+\[
+y_mean = sum(y)/len(y)
+\]
+
+
+Where:
+
+\[
+m = \frac{\sum (x_i - x_mean)(y_i - y_mean)}{\sum (x_i - x_mean)^2}
+\]
+
+
+\[
+b = y_mean - m*x_mean
+\]
+
+---
+#  Multiple Linear Regression
+
+This project demonstrates **Multiple Linear Regression implemented manually in Python**, without using any external libraries like NumPy or scikit-learn.  
+It helps understand the **mathematical logic** behind regression and how the **coefficients are derived step by step** — for both types of models:
+
+- **Regression through the Origin**
+- **Regression through the Centroid (Normal Regression)**
+
+---
+
+##  Concept Summary
+
+- **Goal:** Predict the dependent variable `Y` using two independent variables, `X1` and `X2`.  
+- **Method:** Uses the *least squares method* to minimize the sum of squared errors between actual and predicted values.  
+- **Outputs:** Regression coefficients `B0`, `B1`, and `B2`, and the final regression equation.  
+- **Types Covered:**
+  1. **Through Centroid (Normal Regression)** → includes intercept term `B0`
+  2. **Through Origin (No Intercept)** → forces regression to start at (0,0,0)
+
+---
+
+## 1. Regression **Through Centroid** (Normal Regression)
+
+### Model:
+\[
+Y = B_0 + B_1X_1 + B_2X_2
+\]
+
+### Formulas:
+\[
+B_1 = \frac{Σ(X_2 - \bar{X_2})^2Σ(X_1 - \bar{X_1})(Y - \bar{Y}) - Σ(X_1 - \bar{X_1})(X_2 - \bar{X_2})Σ(X_2 - \bar{X_2})(Y - \bar{Y})}{Σ(X_1 - \bar{X_1})^2Σ(X_2 - \bar{X_2})^2 - [Σ(X_1 - \bar{X_1})(X_2 - \bar{X_2})]^2}
+\]
+
+\[
+B_2 = \frac{Σ(X_1 - \bar{X_1})^2Σ(X_2 - \bar{X_2})(Y - \bar{Y}) - Σ(X_1 - \bar{X_1})(X_2 - \bar{X_2})Σ(X_1 - \bar{X_1})(Y - \bar{Y})}{Σ(X_1 - \bar{X_1})^2Σ(X_2 - \bar{X_2})^2 - [Σ(X_1 - \bar{X_1})(X_2 - \bar{X_2})]^2}
+\]
+
+\[
+B_0 = \bar{Y} - B_1\bar{X_1} - B_2\bar{X_2}
+\]
+
+ **This is the standard regression model** — the regression plane passes through the **centroid** (mean point)  
+\((\bar{X_1}, \bar{X_2}, \bar{Y})\).
+
+---
+
+## 2. Regression **Through Origin**
+
+### Model:
+\[
+Y = B_1X_1 + B_2X_2
+\]
+
+### Formulas:
+\[
+B_1 = \frac{ΣX_2^2ΣX_1Y - ΣX_1X_2ΣX_2Y}{ΣX_1^2ΣX_2^2 - (ΣX_1X_2)^2}
+\]
+
+\[
+B_2 = \frac{ΣX_1^2ΣX_2Y - ΣX_1X_2ΣX_1Y}{ΣX_1^2ΣX_2^2 - (ΣX_1X_2)^2}
+\]
+
+ **Used only when** you are told that the regression line/plane passes **through the origin**,  
+i.e., \(Y = 0\) when \(X_1 = X_2 = 0\).  
+This version has **no intercept** (`B0 = 0`).
+
+#### When we say a regression passes through the origin, it means the line or plane goes through the point (0, 0, 0), so all the mean are 0. 
+
+---
+
+# Batch Gradient Descent for Linear Regression
+
+###  Overview
+This Python project demonstrates **Linear Regression** using **Batch Gradient Descent (BGD)** — a foundational optimization algorithm in machine learning.
+
+Unlike **Stochastic Gradient Descent (SGD)**, which updates model parameters after every single data point, **Batch Gradient Descent** updates them **once per iteration** after processing the *entire dataset*.  
+This approach leads to smoother and more stable convergence, though it may be slower on large datasets.
+
+---
+
+\[
+Y_{pred} = B0 + B1 \times X
+\]
+
+Where:
+- `B0` → Intercept (bias term)  
+- `B1` → Slope (weight)  
+- `X` → Input feature  
+- `Y` → Actual target values  
+
+---
+
+###  Loss Function
+
+The program minimizes the **Mean Squared Error (MSE)**:
+
+\[
+Loss = \frac{1}{2n} \sum_{i=1}^{n} (Y_{pred_i} - Y_i)^2
+\]
+
+The parameters are updated after computing the **average gradients** across the entire dataset:
+
+\[
+B0 := B0 - A \times \frac{1}{n} \sum_{i=1}^{n}(Y_{pred_i} - Y_i)
+\]
+\[
+B1 := B1 - A \times \frac{1}{n} \sum_{i=1}^{n}(Y_{pred_i} - Y_i) \times X_i
+\]
+
+Where:
+- `A` → Learning Rate (controls how fast the model learns)
+
+---
+
+##  Features
+
+ Implements **Batch Gradient Descent** step-by-step  
+ Shows **parameter updates** and **loss per iteration**  
+ Interactive user input for data and hyperparameters  
+ Educational for understanding linear regression learning  
+
+---
+
+#  Stochastic Gradient Descent for Linear Regression
+
+###  Overview
+This Python project demonstrates **Linear Regression** using **Stochastic Gradient Descent (SGD)** — one of the fundamental optimization algorithms in machine learning.
+
+Unlike **Batch Gradient Descent**, which updates parameters after processing the entire dataset, **SGD** updates the model **after each individual data point**.  
+This allows faster learning (though sometimes noisier updates), making it a great educational example of how models gradually learn patterns.
+
+---
+
+\[
+Y_{pred} = B0 + B1 \times X
+\]
+
+Where:
+- `B0` → Intercept (bias)
+- `B1` → Slope (weight)
+- `X` → Input data
+- `Y` → Actual output data
+
+---
+
+###  Loss Function
+
+The program minimizes the **Mean Squared Error (MSE)**:
+
+\[
+Loss = (Y_{pred} - Y)^2
+\]
+
+For each data point, the parameters are updated using the following gradient descent rules:
+
+\[
+B0 := B0 - A \times (Y_{pred} - Y)
+\]
+\[
+B1 := B1 - A \times (Y_{pred} - Y) \times X
+\]
+
+Where:
+- `A` → Learning Rate (step size controlling how fast the model learns)
+
+---
+
+##  Features
+
+ Implements **Stochastic Gradient Descent** step-by-step  
+ Shows **parameter updates (B0, B1)** and **loss** after each iteration  
+ Interactive user inputs for dataset and hyperparameters  
+ Perfect for **students and beginners** learning how gradient descent works  
+
+---
+
